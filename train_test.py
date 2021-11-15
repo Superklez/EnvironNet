@@ -100,8 +100,10 @@ def test_model(
     test_loader: object,
     optimizer: object,
     criterion: object,
-    device: str = "cpu"
+    device: str = "cpu",
+    pin_memory: bool = False,
 ):
+
     training = model.training
 
     start_time = time.time()
@@ -113,8 +115,8 @@ def test_model(
     all_labels = []
 
     for b, (inputs, labels) in enumerate(test_loader):
-        inputs = inputs.to(device, non_blocking=True)
-        labels = labels.to(device, non_blocking=True)
+        inputs = inputs.to(device, non_blocking=pin_memory)
+        labels = labels.to(device, non_blocking=pin_memory)
         optimizer.zero_grad()
 
         with torch.set_grad_enabled(False):

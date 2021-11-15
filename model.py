@@ -88,7 +88,7 @@ class ConvSubBlock(nn.Module):
         # Depthwise
         self.conv_sub_block1 = ConvLayer(
             in_channels,
-            out_channels,
+            in_channels,
             kernel_size,
             stride = stride,
             dilation = 1,
@@ -98,7 +98,7 @@ class ConvSubBlock(nn.Module):
         )
         # Pointwise
         self.conv_sub_block2 = ConvLayer(
-            out_channels,
+            in_channels,
             out_channels,
             kernel_size = (1, 1),
             stride = (1, 1),
@@ -150,7 +150,7 @@ class EnvironNet(nn.Module):
         kernel_size: tuple = (3, 3),
         num_subspecs: int = 1,
         affine: bool = True,
-        dropout: float = 0.5
+        dropout: float = 0.
     ):
         super(EnvironNet, self).__init__()
         self.dropout = dropout
